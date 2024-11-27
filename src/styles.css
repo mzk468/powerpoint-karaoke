@@ -1,0 +1,64 @@
+body,
+html {
+  /* Color Scheme */
+  --darker-orange: #fd5602;
+  --dark-orange: #fe6e00;
+  --orange: #ff8303;
+  --light-orange: #ffaf42;
+
+  margin: 0;
+  padding: 0;
+  background-color: #fedebe;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+button {
+  background-color: var(--orange);
+  transition: background-color 0.3s ease;
+  padding: 1.25rem;
+  border: none;
+  outline: none;
+  border-radius: 0.5rem;
+
+  font-weight: bold;
+  color: white;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: var(--darker-orange);
+}
+
+main > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+}
+
+html:has(.the-game),
+body:has(.the-game) {
+  background-color: black;
+}
+
+.the-game {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  color: white;
+}
+
+.the-game > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
