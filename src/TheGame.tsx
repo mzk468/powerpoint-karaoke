@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { PageStateType } from "./App"
 
 // Modify this if adding slides
-const TOTAL_SLIDES = 170
+const TOTAL_SLIDES = 400
 
 export function TheGame({ state }: { state: PageStateType }) {
     return <div className="the-game">
