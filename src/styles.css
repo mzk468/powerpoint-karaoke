@@ -1,3 +1,10 @@
+@font-face {
+  font-family: Inter;
+  src: url(/inter.ttf) format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
 body,
 html {
   /* Color Scheme */
@@ -9,11 +16,23 @@ html {
   margin: 0;
   padding: 0;
   background-color: #fedebe;
+  font-family: Inter;
+  overflow: hidden;
 
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
+}
+
+h1,
+h2 {
+  letter-spacing: 0.15rem;
+}
+
+li,
+p {
+  font-size: 1.5rem;
 }
 
 button {
@@ -24,10 +43,23 @@ button {
   outline: none;
   border-radius: 0.5rem;
 
+  font-family: Inter;
+  letter-spacing: 0.05rem;
+
   font-weight: bold;
   color: white;
   font-size: 1.2rem;
   cursor: pointer;
+  margin-top: 1.5rem;
+  width: 100%;
+}
+
+.less-important-button {
+  background-color: var(--light-orange);
+  width: fit-content;
+}
+.less-important-button:hover {
+  background-color: var(--orange);
 }
 
 button:hover {
@@ -40,11 +72,13 @@ main > div {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  overflow: hidden;
+  margin: 1.5rem;
 }
 
-html:has(.the-game),
-body:has(.the-game) {
+/* No other images show up other than when the slideshow
+is running. Make the background black for more immersion */
+html:has(img),
+body:has(img) {
   background-color: black;
 }
 
@@ -53,12 +87,17 @@ body:has(.the-game) {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-
-  color: white;
 }
 
 .the-game > div {
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+
+h6 {
+  font-size: 5rem;
+  margin: 0;
+  padding: 0;
+  letter-spacing: 0.25rem;
 }

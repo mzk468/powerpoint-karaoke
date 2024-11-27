@@ -1,19 +1,47 @@
+import { useState } from "react"
 import { TheGame } from "./TheGame"
 
 export default function App() {
+    const currentPageState = useState<JSX.Element | null>(null)
+    const [currentPage, _] = currentPageState
+
     return <main>
-        <Intro />
+        {!currentPage ?
+            <Intro state={currentPageState} />
+            : currentPage
+        }
     </main>
 }
 
-function Intro() {
+export type PageStateType = [JSX.Element | null, React.Dispatch<React.SetStateAction<JSX.Element | null>>]
+
+function Intro({ state }: { state: PageStateType }) {
+    const [_, setCurrentPage] = state;
     return <div>
         <h1>PowerPoint Karaoke!</h1>
-        <button>Play</button>
+
+        <button
+            className="less-important-button"
+            onClick={() => setCurrentPage(() => <HowToPlay state={state} />)}>
+            How to Play
+        </button>
+        <button
+            className="less-important-button"
+            onClick={() => setCurrentPage(() => <About state={state} />)}>
+            About
+        </button>
+
+
+        <button
+            onClick={() => setCurrentPage(() => <TheGame state={state} />)}>
+            Play
+        </button>
     </div>
 }
 
-function HowToPlay() {
+function HowToPlay({ state }: { state: PageStateType }) {
+    const [_, setCurrentPage] = state;
+
     return <div>
         <h1>How to Play</h1>
         <ul>
@@ -30,11 +58,13 @@ function HowToPlay() {
             </ul>
         </ul>
 
-        <button>Go back</button>
+        <button onClick={() => setCurrentPage(null)}>Go back</button>
     </div>
 }
 
-function About() {
+function About({ state }: { state: PageStateType }) {
+    const [_, setCurrentPage] = state;
+
     return <div>
         <h1>About this project</h1>
 
@@ -42,6 +72,6 @@ function About() {
         <p>Slides sourced by <a href="https://github.com/huijing/" target="_blank">huijing</a></p>
         <p>This app is created by <a href="https://zakariya.tech/" target="_blank">mzk468</a></p>
 
-        <button>Go back</button>
+        <button onClick={() => setCurrentPage(null)}>Go back</button>
     </div>
 }
