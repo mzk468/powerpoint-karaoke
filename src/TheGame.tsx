@@ -137,23 +137,25 @@ function EndScreen({ state }: { state: PageStateType }) {
 }
 
 const randomSlidesPicker = (rngNum: number) => {
-    const stringifiedIdList = localStorage.getItem("id_list")
-    const idList: string[] = stringifiedIdList === null ? [] : JSON.parse(stringifiedIdList)
+    const stringifiedIdList = localStorage.getItem("id_list");
+    const idList: string[] = stringifiedIdList === null ? [] : JSON.parse(stringifiedIdList);
 
-    const getAvailableRngFileName = (rngNum: number) => {
-        if (idList.includes(`${rngNum}.jpg`)) getAvailableRngFileName(rngNum + 1)
-        return `${rngNum}.jpg`
-    }
+    const getAvailableRngFileName = (rngNum: number): string => {
+        while (idList.includes(`${rngNum}.jpg`)) {
+            rngNum++;
+        }
+        return `${rngNum}.jpg`;
+    };
 
-    // Populate with first picked slide
-    let slides = [`${getAvailableRngFileName(parseInt(rngNum + ""))}`]
+    let slides = [getAvailableRngFileName(Math.floor((rngNum + (TOTAL_SLIDES / 2)) * Math.random()) % TOTAL_SLIDES)];
     for (let i = 1; i < 10; i++) {
-        // This is how not to generate a random number but oh well!
-        slides.push(`${getAvailableRngFileName(parseInt(((i * rngNum + (1 / 21) * rngNum) % TOTAL_SLIDES) + ""))}`)
+        slides.push(
+            getAvailableRngFileName(Math.floor((i * rngNum + (rngNum / 2969)) % TOTAL_SLIDES))
+        );
     }
 
-    return slides
-}
+    return slides;
+};
 
 const saveToStorage = (slidesArr: string[]) => {
     const stringifiedIdList = localStorage.getItem("id_list")
